@@ -72,11 +72,11 @@ const Navbar = () => {
                 Profile
               </Link>
               <Link
-                to="/collections"
+                to="/collection"
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
                 onClick={() => setIsDropdownOpen(false)}
               >
-                Collections
+                My Collection
               </Link>
               <button
                 onClick={handleLogout}

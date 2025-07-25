@@ -1,60 +1,61 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import landmarkService from '../services/landmarkService';
 
 const ActivityDetails = () => {
+  const { slug } = useParams();
+  const [activity, setActivity] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('about');
+
+  useEffect(() => {
+    const fetchActivityDetails = async () => {
+      try {
+        setLoading(true);
+        const activities = await landmarkService.getActivities();
+        const foundActivity = activities.find(a => a.marker.name === slug);
+        if (foundActivity) {
+          setActivity(landmarkService.transformActivityData(foundActivity));
+        } else {
+          setError('Activity not found');
+        }
+      } catch (err) {
+        setError('Failed to fetch activity details.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchActivityDetails();
+  }, [slug]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!activity) {
+    return <div>Activity not found.</div>;
+  }
 
   const tabContent = {
     about: {
-      title: "About Pacu Jalur Festival",
+      title: `About ${activity.name}`,
       content: (
         <div className="space-y-4 text-gray-700 leading-relaxed">
-          <p>
-            Pacu Jalur adalah tradisi balap perahu tradisional yang menjadi kebanggaan masyarakat Riau. Festival ini 
-            merupakan warisan budaya yang telah berlangsung selama berabad-abad dan menjadi salah satu atraksi budaya 
-            paling spektakuler di Indonesia. Acara ini biasanya diselenggarakan di Sungai Kampar dan Sungai Siak dengan 
-            antusiasme yang luar biasa dari masyarakat lokal dan wisatawan.
-          </p>
-          
-          <p>
-            Festival Pacu Jalur tidak hanya sekedar perlombaan, tetapi juga perayaan budaya yang menampilkan berbagai 
-            aspek kehidupan masyarakat Melayu Riau. Perahu jalur yang digunakan adalah perahu tradisional yang dibuat 
-            khusus dengan teknik dan desain yang telah diturunkan dari generasi ke generasi. Setiap perahu dapat 
-            mengangkut puluhan pendayung yang bekerja sama dalam harmoni yang sempurna.
-          </p>
-          
-          <p>
-            Selama festival, pengunjung dapat menyaksikan berbagai kegiatan pendukung seperti pertunjukan tari 
-            tradisional, musik Melayu, pameran kerajinan tangan, dan kuliner khas Riau. Atmosfer festival yang meriah 
-            dan penuh warna membuat pengalaman ini tak terlupakan bagi siapa saja yang hadir.
-          </p>
+          <p>{activity.description}</p>
         </div>
       )
     },
     legend: {
-      title: "Legend of Pacu Jalur Festival",
+      title: `Legend of ${activity.name}`,
       content: (
         <div className="space-y-4 text-gray-700 leading-relaxed">
-          <p>
-            Tradisi Pacu Jalur berasal dari masa Kesultanan Siak Sri Indrapura pada abad ke-18. Awalnya, perahu jalur 
-            digunakan sebagai alat transportasi utama di sungai-sungai besar Riau. Seiring waktu, masyarakat mulai 
-            mengadakan perlombaan untuk menguji kecepatan dan keterampilan para pendayung, yang kemudian berkembang 
-            menjadi festival budaya yang besar.
-          </p>
-          
-          <p>
-            Pada masa kolonial Belanda, tradisi ini sempat mengalami penurunan karena berbagai pembatasan. Namun, 
-            setelah kemerdekaan Indonesia, masyarakat Riau kembali menghidupkan tradisi ini dengan semangat yang baru. 
-            Pemerintah daerah mulai memberikan dukungan penuh pada tahun 1980-an, menjadikan Pacu Jalur sebagai event 
-            pariwisata budaya resmi Provinsi Riau.
-          </p>
-          
-          <p>
-            Hingga kini, Festival Pacu Jalur telah menjadi ikon budaya Riau yang dikenal hingga mancanegara. Setiap 
-            tahun, ribuan wisatawan dari berbagai daerah dan negara datang untuk menyaksikan kemeriahan festival ini. 
-            Tradisi yang dimulai sebagai kegiatan sehari-hari masyarakat pesisir kini telah menjadi warisan budaya 
-            yang berharga dan harus dilestarikan.
-          </p>
+          <p>No legend available for this activity.</p>
         </div>
       )
     },
@@ -62,96 +63,8 @@ const ActivityDetails = () => {
       title: "Event Information & Contacts",
       content: (
         <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-3 text-lg">Festival Information</h3>
-            <div className="space-y-3">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-center">
-                  <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                  </svg>
-                  <span>Sungai Kampar, Pekanbaru, Riau</span>
-                </div>
-                <div className="flex items-center">
-                  <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
-                  </svg>
-                  <span>August - September (Annual)</span>
-                </div>
-                <div className="flex items-center">
-                  <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                  </svg>
-                  <span>info@pacujalur-riau.id</span>
-                </div>
-                <div className="flex items-center">
-                  <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 9a1 1 0 112 0v3a1 1 0 11-2 0V9z" clipRule="evenodd" />
-                    <path fillRule="evenodd" d="M10 5a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
-                  </svg>
-                  <span>www.pacujalur-riau.id</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-gray-800 mb-3 text-lg">Festival Schedule & Ticket Info</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-medium text-gray-700 mb-2">Daily Schedule</h4>
-                <div className="text-sm space-y-1">
-                  <div className="flex justify-between">
-                    <span>Registration:</span>
-                    <span>07:00 - 08:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Opening Ceremony:</span>
-                    <span>08:00 - 09:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Preliminary Races:</span>
-                    <span>09:00 - 12:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Final Race:</span>
-                    <span>14:00 - 16:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Cultural Shows:</span>
-                    <span>16:00 - 18:00</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div>
-                <h4 className="font-medium text-gray-700 mb-2">Ticket Information</h4>
-                <div className="text-sm space-y-1">
-                  <div className="flex justify-between">
-                    <span>General Admission:</span>
-                    <span>Rp 50.000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>VIP Tribune:</span>
-                    <span>Rp 150.000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Festival Package:</span>
-                    <span>Rp 300.000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Students (with ID):</span>
-                    <span>Rp 25.000</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Children (under 12):</span>
-                    <span>Free</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p>Contact: {activity.contact}</p>
+          <p>Website: <a href={activity.url} target="_blank" rel="noopener noreferrer">{activity.url}</a></p>
         </div>
       )
     }
@@ -170,12 +83,12 @@ const ActivityDetails = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-200 mb-2">Pacu Jalur Festival</h1>
+            <h1 className="text-4xl font-bold text-gray-200 mb-2">{activity.name}</h1>
             <div className="flex items-center text-gray-300">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
-              <span>Pekanbaru, Riau</span>
+              <span>{activity.location}</span>
             </div>
           </div>
 
@@ -183,19 +96,19 @@ const ActivityDetails = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
             <div className="md:col-span-2">
               <img 
-                src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&h=400&fit=crop" 
-                alt="Pacu Jalur Festival Main"
+                src={activity.image}
+                alt={`${activity.name} Main`}
                 className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
               />
             </div>
             <div className="grid grid-cols-2 md:grid-cols-1 gap-4">
               <img 
-                src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=400&h=200&fit=crop" 
+                src={activity.pictures[1] ? activity.pictures[1].url : activity.image}
                 alt="Traditional Boats"
                 className="w-full h-32 md:h-36 object-cover rounded-lg shadow-lg"
               />
               <img 
-                src="https://images.unsplash.com/photo-1533177172800-09d31ad38e45?w=400&h=200&fit=crop" 
+                src={activity.pictures[2] ? activity.pictures[2].url : activity.image}
                 alt="Cultural Performance"
                 className="w-full h-32 md:h-36 object-cover rounded-lg shadow-lg"
               />

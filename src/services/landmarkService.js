@@ -134,7 +134,11 @@ class LandmarkService {
       contact: marker.contact,
       url: marker.url,
       coordinates: location ? location.coordinates : null,
-      pictures: marker.pictures || []
+      pictures: marker.pictures || [],
+      city: location ? location.city : '',
+      province: location ? location.province : '',
+      min_price: marker.min_price,
+      max_price: marker.max_price
     };
   }
 
@@ -157,8 +161,129 @@ class LandmarkService {
       contact: marker.contact,
       url: marker.url,
       coordinates: location ? location.coordinates : null,
-      pictures: marker.pictures || []
+      pictures: marker.pictures || [],
+      city: location ? location.city : '',
+      province: location ? location.province : '',
+      min_price: marker.min_price,
+      max_price: marker.max_price
     };
+  }
+
+  // Search and filter landmarks
+  searchAndFilterLandmarks(landmarks, searchQuery = '', filters = {}) {
+    let filtered = [...landmarks];
+
+    // Apply search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(landmark =>
+        landmark.name.toLowerCase().includes(query) ||
+        landmark.description.toLowerCase().includes(query) ||
+        landmark.location.toLowerCase().includes(query) ||
+        landmark.city.toLowerCase().includes(query) ||
+        landmark.province.toLowerCase().includes(query) ||
+        (landmark.story && landmark.story.toLowerCase().includes(query))
+      );
+    }
+
+    // Apply category filter (for landmarks, we can use description content)
+    if (filters.category) {
+      const category = filters.category.toLowerCase();
+      filtered = filtered.filter(landmark => {
+        const content = `${landmark.name} ${landmark.description} ${landmark.story || ''}`.toLowerCase();
+        switch (category) {
+          case 'historical sites':
+            return content.includes('historical') || content.includes('history') || content.includes('heritage') || content.includes('ancient');
+          case 'museums':
+            return content.includes('museum') || content.includes('gallery') || content.includes('exhibition');
+          case 'religious sites':
+            return content.includes('mosque') || content.includes('temple') || content.includes('church') || content.includes('religious') || content.includes('masjid');
+          case 'cultural sites':
+            return content.includes('cultural') || content.includes('culture') || content.includes('traditional') || content.includes('art');
+          default:
+            return true;
+        }
+      });
+    }
+
+    // Apply price range filter
+    if (filters.priceRange) {
+      filtered = filtered.filter(landmark => {
+        const price = landmark.max_price; // Use max price for filtering
+        switch (filters.priceRange) {
+          case 'Under Rp 500.000':
+            return price < 500000;
+          case 'Rp 500.000 - 1.000.000':
+            return price >= 500000 && price <= 1000000;
+          case 'Rp 1.000.000 - 2.000.000':
+            return price >= 1000000 && price <= 2000000;
+          case 'Above Rp 2.000.000':
+            return price > 2000000;
+          default:
+            return true;
+        }
+      });
+    }
+
+    return filtered;
+  }
+
+  // Search and filter activities
+  searchAndFilterActivities(activities, searchQuery = '', filters = {}) {
+    let filtered = [...activities];
+
+    // Apply search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(activity =>
+        activity.name.toLowerCase().includes(query) ||
+        activity.description.toLowerCase().includes(query) ||
+        activity.location.toLowerCase().includes(query) ||
+        activity.city.toLowerCase().includes(query) ||
+        activity.province.toLowerCase().includes(query)
+      );
+    }
+
+    // Apply category filter (for activities)
+    if (filters.category) {
+      const category = filters.category.toLowerCase();
+      filtered = filtered.filter(activity => {
+        const content = `${activity.name} ${activity.description}`.toLowerCase();
+        switch (category) {
+          case 'cultural events':
+            return content.includes('cultural') || content.includes('festival') || content.includes('ceremony') || content.includes('traditional');
+          case 'religious activities':
+            return content.includes('religious') || content.includes('prayer') || content.includes('pilgrimage') || content.includes('spiritual');
+          case 'traditional arts':
+            return content.includes('art') || content.includes('craft') || content.includes('dance') || content.includes('music') || content.includes('traditional');
+          case 'educational tours':
+            return content.includes('tour') || content.includes('educational') || content.includes('learning') || content.includes('guide') || content.includes('museum');
+          default:
+            return true;
+        }
+      });
+    }
+
+    // Apply price range filter
+    if (filters.priceRange) {
+      filtered = filtered.filter(activity => {
+        const price = activity.max_price; // Use max price for filtering
+        switch (filters.priceRange) {
+          case 'Under Rp 500.000':
+            return price < 500000;
+          case 'Rp 500.000 - 1.000.000':
+            return price >= 500000 && price <= 1000000;
+          case 'Rp 1.000.000 - 2.000.000':
+            return price >= 1000000 && price <= 2000000;
+          case 'Above Rp 2.000.000':
+            return price > 2000000;
+          default:
+            return true;
+        }
+      });
+    }
+
+    return filtered;
   }
 }
 
