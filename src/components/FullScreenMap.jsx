@@ -163,7 +163,6 @@ const FullScreenMap = () => {
                 </button>
               </div>
 
-              {/* Scrollable Content */}
               <div className="overflow-y-auto h-[calc(100vh-4rem)] pb-20"> {/* Adjust the height to leave space for the header */}
                 {selectedMarker.pictures && selectedMarker.pictures.length > 0 && (
                   <div className="px-6 py-4">
@@ -181,7 +180,6 @@ const FullScreenMap = () => {
                   </div>
                 )}
 
-                {/* Location */}
                 <div className="px-6 py-4 border-b border-gray-100">
                   <div className="flex items-start space-x-3">
                     <div className="flex-shrink-0 mt-1">
@@ -201,7 +199,6 @@ const FullScreenMap = () => {
                   </div>
                 </div>
 
-                {/* Price Range */}
                 <div className="px-6 py-4 border-b border-gray-100">
                   <div className="flex items-start space-x-3">
                     <div className="flex-shrink-0 mt-1">
@@ -223,7 +220,6 @@ const FullScreenMap = () => {
                   </div>
                 </div>
 
-                {/* Contact */}
                 {selectedMarker.contact && (
                   <div className="px-6 py-4 border-b border-gray-100">
                     <div className="flex items-start space-x-3">
@@ -240,7 +236,6 @@ const FullScreenMap = () => {
                   </div>
                 )}
 
-                {/* Website */}
                 {selectedMarker.url && (
                   <div className="px-6 py-4 border-b border-gray-100">
                     <div className="flex items-start space-x-3">
@@ -264,7 +259,6 @@ const FullScreenMap = () => {
                   </div>
                 )}
 
-                {/* Description */}
                 {selectedMarker.description && (
                   <div className="px-6 py-4">
                     <div className="flex items-start space-x-3">
@@ -275,6 +269,21 @@ const FullScreenMap = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 mb-2">Description</p>
+                        <p className="text-sm text-gray-600 leading-relaxed">{selectedMarker.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {selectedMarker.story && (
+                  <div className="px-6 py-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="flex-shrink-0 mt-1">
+                        <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 mb-2">Storygit</p>
                         <p className="text-sm text-gray-600 leading-relaxed">{selectedMarker.description}</p>
                       </div>
                     </div>

@@ -77,8 +77,7 @@ const AppContent = () => {
           <FullScreenMap />
           } 
         />
-<<<<<<< HEAD
-        <Route 
+        <Route
           path="/folklore" 
           element={
           <Folklore />
@@ -88,14 +87,14 @@ const AppContent = () => {
           path="/folklore/details" 
           element={
           <FolkloreDetails />
-          } 
-=======
+          }
+          >
+        </Route>
         <Route
           path="/map/:id"
           element={
           <FullScreenMap />
           }
->>>>>>> 615485f73cd2e9cb6cae8a371b069a8adad82fa1
         />
       </Routes>
       {!hideFooter && <Footer />}
