@@ -219,7 +219,7 @@ const FolkloreDetails = () => {
             {/* Large Image */}
             <div className="lg:col-span-2">
               <img
-                src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&h=500&fit=crop"
+                src="https://asset.kompas.com/crops/oeF5G9_ih4xnECFSQdtWjlWLrrc=/0x0:1000x667/1200x800/data/photo/2022/07/04/62c2f0abe941e.jpg"
                 alt="The Legend of The Crying Stone"
                 className="w-full h-80 lg:h-96 object-cover rounded-lg shadow-lg"
               />
@@ -228,12 +228,12 @@ const FolkloreDetails = () => {
             {/* Small Images */}
             <div className="grid grid-rows-2 gap-4">
               <img
-                src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=400&h=250&fit=crop"
+                src="https://smpn2.bimakota.sch.id/upload/kontent/1693182967_2ec018f6e1228014d59a.jpg"
                 alt="Dayak Cultural Heritage"
                 className="w-full h-36 lg:h-44 object-cover rounded-lg shadow-lg"
               />
               <img
-                src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=400&h=250&fit=crop"
+                src="https://telusurkultur.com/cdn/shop/articles/Cover_Blog_Dienvibi_2_8efc2c06-4296-4230-94f4-8e5449f6e859.png?v=1695530285"
                 alt="Kalimantan Forest"
                 className="w-full h-36 lg:h-44 object-cover rounded-lg shadow-lg"
               />

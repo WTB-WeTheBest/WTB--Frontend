@@ -10,7 +10,7 @@ const Folklore = () => {
       name: "Putri Ayu : A Legend from Trunyan Village",
       location: "Bali",
       price: "",
-      image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=200&fit=crop",
+      image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJhxZUJzYyQoKp36nvPNTl941pgFowi1FXIRsOPSh0PNowX2sb4m-hX7XK_2RU2hroIi_3GLxJec3FdOjUwzoZL20k_ce4IjO-rJ4o5WKf2f7mc7bnghqc4V57z_sEa6zkJefKHVOo6UJqFr46rLxE92nK1UiXelDAyMlWfwU4PFOUoK7AQ8ogb3cPjdE/w1200-h630-p-k-no-nu/cartoon%20illustration%20of%20a%20goddess%20in%20traditional%20South%20Sumatra%20attire%20admiring%20the%20Musi%20River%20from%20the%20heavens%20for%20children.png",
       description: "When you follow your heart and explore the unknown, you may encounter beauty and knowledge beyond what you ever imagined."
     },
     {
@@ -18,7 +18,7 @@ const Folklore = () => {
       name: "Bujang's Legendary Adventure: The Tale of Belitung Island",
       location: "Bangka Belitung",
       price: "",
-      image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=200&fit=crop",
+      image: "https://portal.belitung.go.id/wp-content/uploads/2022/11/ec520-masjidjamik.jpg",
       description: "Their strength is not found in revenge or greed, but in something beautiful in every interaction."
     },
     {
@@ -26,7 +26,7 @@ const Folklore = () => {
       name: "Sangkuriang: The Legend of Tangkuban Perahu",
       location: "West Java",
       price: "",
-      image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=200&fit=crop",
+      image: "https://smpn2.bimakota.sch.id/upload/kontent/1693182967_2ec018f6e1228014d59a.jpg",
       description: "This strength is not found in revenge or greed, but in something beautiful in every interaction."
     },
     {
@@ -34,7 +34,7 @@ const Folklore = () => {
       name: "The Legend of The Crying Stone",
       location: "Kalimantan",
       price: "",
-      image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=200&fit=crop",
+      image: "https://asset.kompas.com/crops/oeF5G9_ih4xnECFSQdtWjlWLrrc=/0x0:1000x667/1200x800/data/photo/2022/07/04/62c2f0abe941e.jpg",
       description: "True strength is not found in revenge or greed, but is something beautiful in every interaction."
     }
   ];
@@ -95,28 +95,8 @@ const Folklore = () => {
             ))}
           </div>
         </div>
-
-        {/* Second Section */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {folkloreStories.map((story) => (
-              <Link to="/folklore/details" key={`second-${story.id}`}>
-                <FolkloreCard folklore={story} />
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Third Section */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {folkloreStories.map((story) => (
-              <Link to="/folklore/details" key={`third-${story.id}`}>
-                <FolkloreCard folklore={story} />
-              </Link>
-            ))}
-          </div>
-        </div>
+      <div className="text-2xl font-bold text-gray-800 mb-2 px-auto font-inter">More Coming Soon!</div>
+        
       </div>
 
       {/* Footer Section */}
