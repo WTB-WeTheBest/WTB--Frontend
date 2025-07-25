@@ -17,8 +17,8 @@ import FolkloreDetails from './components/FolkloreDetails';
 
 const AppContent = () => {
   const location = useLocation();
-  const hideNavbar = ['/login', '/register'].includes(location.pathname);
-  const hideFooter = ['/login', '/register'].includes(location.pathname);
+  const hideNavbar = ['/login', '/register', '/map'].includes(location.pathname);
+  const hideFooter = ['/login', '/register', '/map'].includes(location.pathname);
 
   return (
     <div className="min-h-screen">
@@ -77,6 +77,7 @@ const AppContent = () => {
           <FullScreenMap />
           } 
         />
+<<<<<<< HEAD
         <Route 
           path="/folklore" 
           element={
@@ -88,6 +89,13 @@ const AppContent = () => {
           element={
           <FolkloreDetails />
           } 
+=======
+        <Route
+          path="/map/:id"
+          element={
+          <FullScreenMap />
+          }
+>>>>>>> 615485f73cd2e9cb6cae8a371b069a8adad82fa1
         />
       </Routes>
       {!hideFooter && <Footer />}

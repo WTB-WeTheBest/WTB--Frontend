@@ -1,108 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MagnifyingGlassIcon, AdjustmentsHorizontalIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import ActivityCard from './ActivityCard';
+import landmarkService from '../services/landmarkService';
 
 const Activities1 = () => {
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedPriceRange, setSelectedPriceRange] = useState('');
+  const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const categories = ['Cultural Events', 'Religious Activities', 'Traditional Arts', 'Educational Tours'];
   const priceRanges = ['Under Rp 500.000', 'Rp 500.000 - 1.000.000', 'Rp 1.000.000 - 2.000.000', 'Above Rp 2.000.000'];
 
-  const nearestActivities = [
-    {
-      id: 1,
-      name: "Masjid Agung An-Nur",
-      location: "Pekanbaru, Riau",
-      price: "Rp 2.705.000",
-      image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=300&h=200&fit=crop"
-    },
-    {
-      id: 2,
-      name: "Istana Siak Sri Indrapura",
-      location: "Siak, Riau",
-      price: "Rp 1.200.000",
-      image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=200&fit=crop"
-    },
-    {
-      id: 3,
-      name: "Museum Sang Nila Utama",
-      location: "Pekanbaru, Riau",
-      price: "Rp 605.000",
-      image: "https://images.unsplash.com/photo-1533177172800-09d31ad38e45?w=300&h=200&fit=crop"
-    },
-    {
-      id: 4,
-      name: "Desa Wisata Kandri",
-      location: "Kota Semarang",
-      price: "Rp 1.500.000",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
-    }
-  ];
+  // Fetch activities from API
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        setLoading(true);
+        const rawActivities = await landmarkService.getActivities();
+        const transformedActivities = rawActivities
+          .map(activity => landmarkService.transformActivityData(activity))
+          .filter(activity => activity !== null);
+        setActivities(transformedActivities);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching activities:', err);
+        setError('Failed to load activities. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const trendingActivities = [
-    {
-      id: 1,
-      name: "Pacu Jalur Festival",
-      location: "Pekanbaru, Riau",
-      price: "Rp 6.705.000",
-      image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=300&h=200&fit=crop"
-    },
-    {
-      id: 2,
-      name: "Siak River Boat Tour",
-      location: "Siak, Riau",
-      price: "Rp 1.205.000",
-      image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=200&fit=crop"
-    },
-    {
-      id: 3,
-      name: "Desa Wisata Kandri",
-      location: "Kota Semarang",
-      price: "Rp 1.400.000",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
-    },
-    {
-      id: 4,
-      name: "Desa Wisata Kandri",
-      location: "Kota Semarang",
-      price: "Rp 1.400.000",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
-    }
-  ];
+    fetchActivities();
+  }, []);
 
-  const recommendedActivities = [
-    {
-      id: 1,
-      name: "Pacu Jalur Festival",
-      location: "Pekanbaru, Riau",
-      price: "Rp 6.705.000",
-      image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=300&h=200&fit=crop"
-    },
-    {
-      id: 2,
-      name: "Siak River Boat Tour",
-      location: "Siak, Riau",
-      price: "Rp 1.205.000",
-      image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=200&fit=crop"
-    },
-    {
-      id: 3,
-      name: "Desa Wisata Kandri",
-      location: "Kota Semarang",
-      price: "Rp 1.400.000",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
-    },
-    {
-      id: 4,
-      name: "Desa Wisata Kandri",
-      location: "Kota Semarang",
-      price: "Rp 1.400.000",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
+  // Helper function to get activities for each section
+  const getDisplayActivities = (section = 'all') => {
+    if (activities.length === 0) return [];
+    
+    // For demo purposes, we'll distribute activities into different sections
+    // In a real app, you might have different endpoints or categorization
+    const shuffled = [...activities].sort(() => 0.5 - Math.random());
+    
+    switch (section) {
+      case 'nearest':
+        return shuffled.slice(0, 4);
+      case 'trending':
+        return shuffled.slice(4, 8).length > 0 ? shuffled.slice(4, 8) : shuffled.slice(0, 4);
+      case 'recommended':
+        return shuffled.slice(8, 12).length > 0 ? shuffled.slice(8, 12) : shuffled.slice(0, 4);
+      default:
+        return shuffled;
     }
-  ];
+  };
 
 
   return (
@@ -219,62 +172,96 @@ const Activities1 = () => {
       <div 
         className="px-8 py-12"
       >
-        <div className="max-w-6xl mx-auto mb-16">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
-              Nearest Activities around you
-            </h2>
-            <p className="text-gray-600 font-inter">
-              Vacations to make your experience enjoyable in Indonesia!
-            </p>
+        {/* Loading State */}
+        {loading && (
+          <div className="max-w-6xl mx-auto mb-16 text-center">
+            <div className="py-12">
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2B5C4F]"></div>
+              <p className="mt-4 text-gray-600">Loading activities...</p>
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {nearestActivities.map((activity) => (
-              <Link to="/activities/details" key={activity.id} className="cursor-pointer">
-                <ActivityCard activity={activity} />
-              </Link>
-            ))}
-          </div>
-        </div>
+        )}
 
-        <div className="max-w-6xl mx-auto mb-16">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
-              Trending now
-            </h2>
-            <p className="text-gray-600 font-inter">
-              Vacations to make your experience enjoyable in Indonesia!
-            </p>
+        {/* Error State */}
+        {error && (
+          <div className="max-w-6xl mx-auto mb-16 text-center">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+              <p className="text-red-600">{error}</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              >
+                Retry
+              </button>
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trendingActivities.map((activity) => (
-              <Link to="/activities/details" key={activity.id} className="cursor-pointer">
-                <ActivityCard activity={activity} />
-              </Link>
-            ))}
-          </div>
-        </div>
+        )}
 
-        <div className="max-w-6xl mx-auto mb-16">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
-              Recommended for you by AI
-            </h2>
-            <p className="text-gray-600 font-inter">
-              Vacations to make your experience enjoyable in Indonesia!
-            </p>
+        {/* Nearest Activities Section */}
+        {!loading && !error && (
+          <div className="max-w-6xl mx-auto mb-16">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
+                Nearest Activities around you
+              </h2>
+              <p className="text-gray-600 font-inter">
+                Vacations to make your experience enjoyable in Indonesia!
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {getDisplayActivities('nearest').map((activity) => (
+                <Link to="/activities/details" key={activity.id} className="cursor-pointer">
+                  <ActivityCard activity={activity} />
+                </Link>
+              ))}
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {recommendedActivities.map((activity) => (
-              <Link to="/activities/details" key={activity.id} className="cursor-pointer">
-                <ActivityCard activity={activity} />
-              </Link>
-            ))}
+        )}
+
+        {/* Trending Now Section */}
+        {!loading && !error && (
+          <div className="max-w-6xl mx-auto mb-16">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
+                Trending now
+              </h2>
+              <p className="text-gray-600 font-inter">
+                Vacations to make your experience enjoyable in Indonesia!
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {getDisplayActivities('trending').map((activity) => (
+                <Link to="/activities/details" key={activity.id} className="cursor-pointer">
+                  <ActivityCard activity={activity} />
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Recommended by AI Section */}
+        {!loading && !error && (
+          <div className="max-w-6xl mx-auto mb-16">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
+                Recommended for you by AI
+              </h2>
+              <p className="text-gray-600 font-inter">
+                Vacations to make your experience enjoyable in Indonesia!
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {getDisplayActivities('recommended').map((activity) => (
+                <Link to="/activities/details" key={activity.id} className="cursor-pointer">
+                  <ActivityCard activity={activity} />
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
 

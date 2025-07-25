@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  wtb-frontend:
+    image: wtb-frontend:latest
+    container_name: WTB--Frontend
+    ports:
+      - "127.0.0.1:5173:80"
