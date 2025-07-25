@@ -5,6 +5,7 @@ import LandingPage from './components/LandingPage';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import Landmark1 from './components/Landmark1';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -80,13 +81,17 @@ function App() {
                 </PublicRoute>
               }
             />
-            <Route
-              path="/dashboard"
+            <Route 
+              path="/dashboard" 
               element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
+              <Dashboard />
+              } 
+            />
+            <Route 
+              path="/landmarks" 
+              element={
+              <Landmark1 />
+              } 
             />
           </Routes>
         </div>
