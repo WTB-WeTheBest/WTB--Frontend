@@ -11,6 +11,7 @@ import Landmark1 from './components/Landmark1';
 import Activities1 from './components/Activities1';
 import LandmarkDetails from './components/LandmarkDetails';
 import ActivityDetails from './components/ActivityDetails';
+import FullScreenMap from './components/FullScreenMap.jsx';
 
 const AppContent = () => {
   const location = useLocation();
@@ -66,6 +67,12 @@ const AppContent = () => {
           path="/activities/details" 
           element={
           <ActivityDetails />
+          } 
+        />
+        <Route 
+          path="/map" 
+          element={
+          <FullScreenMap />
           } 
         />
       </Routes>
