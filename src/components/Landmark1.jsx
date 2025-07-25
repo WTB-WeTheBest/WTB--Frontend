@@ -127,7 +127,7 @@ const Landmark1 = () => {
     <div 
       className="min-h-screen"
       style={{
-        background: 'linear-gradient(to bottom, #2B5C4F 0%, #2B5C4F 5%, rgba(43, 92, 79, 0.8) 10%, rgba(43, 92, 79, 0.4) 15%, white 85%)'
+        background: 'linear-gradient(to bottom, #2B5C4F 0%, #2B5C4F 5%, rgba(43, 92, 79, 0.8) 10%, rgba(43, 92, 79, 0.4) 15%, #EDE4D3 85%)'
       }}
     >
       {/* Fixed Navbar */}
