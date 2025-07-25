@@ -77,12 +77,8 @@ const AppContent = () => {
           <FullScreenMap />
           } 
         />
-<<<<<<< HEAD
-        <Route 
-=======
         <Route
->>>>>>> adf7e588a02819e85ab20e528df7dc87c881889d
-          path="/folklore" 
+          path="/folklore"
           element={
           <Folklore />
           } 
@@ -91,14 +87,8 @@ const AppContent = () => {
           path="/folklore/details" 
           element={
           <FolkloreDetails />
-<<<<<<< HEAD
-          } 
-        />  
-=======
           }
-          >
-        </Route>
->>>>>>> adf7e588a02819e85ab20e528df7dc87c881889d
+        />
         <Route
           path="/map/:id"
           element={
