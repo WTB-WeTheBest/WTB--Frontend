@@ -8,7 +8,6 @@ const LandingPage = () => {
       name: "Masjid Agung An-Nur",
       location: "Lombok Barat, NTB",
       price: "Rp 2.705.000",
-      rating: "reviews",
       image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=300&h=200&fit=crop"
     },
     {
@@ -16,7 +15,6 @@ const LandingPage = () => {
       name: "Istana Siak Sri Indrapura",
       location: "Lombok Barat, Sri Riau",
       price: "Rp 1.200.000",
-      rating: "reviews",
       image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=200&fit=crop"
     },
     {
@@ -24,7 +22,6 @@ const LandingPage = () => {
       name: "Museum Sang Nila Utama",
       location: "",
       price: "Rp 405.000",
-      rating: "person",
       image: "https://images.unsplash.com/photo-1533177172800-09d31ad38e45?w=300&h=200&fit=crop"
     },
     {
@@ -32,7 +29,6 @@ const LandingPage = () => {
       name: "Desa Wisata Kandri",
       location: "Jawa Tengah, Sfi, Sehti",
       price: "Rp 1.500.000",
-      rating: "reviews",
       image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
     }
   ];
@@ -80,13 +76,18 @@ const LandingPage = () => {
           <h1 className="text-2xl font-bold text-yellow-300">BudayaIn!</h1>
         </div>
         <div className="flex items-center space-x-8">
-          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium">
+          <Link to="#" 
+          className="text-yellow-300 hover:text-yellow-200 font-medium">
             Maps
           </Link>
-          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium">
+          <Link 
+            to="/landmarks" 
+            className="text-yellow-300 hover:text-yellow-200 font-medium"
+          >
             Landmarks
           </Link>
-          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium">
+          <Link to="#" 
+          className="text-yellow-300 hover:text-yellow-200 font-medium">
             Activities
           </Link>
         </div>
@@ -205,9 +206,6 @@ const LandingPage = () => {
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-bold text-[#E2C97E] font-inter">
                       {activity.price}
-                    </span>
-                    <span className="text-sm text-gray-500 font-inter">
-                      /person
                     </span>
                   </div>
                 </div>
