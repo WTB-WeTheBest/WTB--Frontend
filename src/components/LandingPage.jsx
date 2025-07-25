@@ -2,119 +2,217 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
+  const landmarks = [
+    {
+      id: 1,
+      name: "Masjid Agung An-Nur",
+      location: "Lombok Barat, NTB",
+      price: "Rp 2.705.000",
+      rating: "reviews",
+      image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=300&h=200&fit=crop"
+    },
+    {
+      id: 2,
+      name: "Istana Siak Sri Indrapura",
+      location: "Lombok Barat, Sri Riau",
+      price: "Rp 1.200.000",
+      rating: "reviews",
+      image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=200&fit=crop"
+    },
+    {
+      id: 3,
+      name: "Museum Sang Nila Utama",
+      location: "",
+      price: "Rp 405.000",
+      rating: "person",
+      image: "https://images.unsplash.com/photo-1533177172800-09d31ad38e45?w=300&h=200&fit=crop"
+    },
+    {
+      id: 4,
+      name: "Desa Wisata Kandri",
+      location: "Jawa Tengah, Sfi, Sehti",
+      price: "Rp 1.500.000",
+      rating: "reviews",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
+    }
+  ];
+
+  const activities = [
+    {
+      id: 1,
+      name: "Pacu Jalur Festival",
+      location: "Lorem Ipsum Sit Dolor...",
+      price: "Rp 9.750.000",
+      image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=300&h=200&fit=crop"
+    },
+    {
+      id: 2,
+      name: "Siak River Boat Tour",
+      location: "Lorem Ipsum Sit Dolor...",
+      price: "Rp 1.500.000",
+      image: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=300&h=200&fit=crop"
+    },
+    {
+      id: 3,
+      name: "Desa Wisata Kandri",
+      location: "Lorem Ipsum Sit Dolor...",
+      price: "Rp 1.500.000",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
+    },
+    {
+      id: 4,
+      name: "Desa Wisata Kandri",
+      location: "Lorem Ipsum Sit Dolor...",
+      price: "Rp 1.500.000",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-800/20 to-pink-800/20"></div>
+    <div 
+      className="min-h-screen"
+      style={{
+        background: 'linear-gradient(to bottom, #2B5C4F 0%, #2B5C4F 5%, rgba(43, 92, 79, 0.8) 10%, rgba(43, 92, 79, 0.4) 15%, white 85%)'
+      }}
+    >
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-[#2B5C4F]">
+        <div className="flex items-center">
+          <h1 className="text-2xl font-bold text-yellow-300">BudayaIn!</h1>
         </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center justify-between py-6">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-white">Garuda</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link
-                to="/login"
-                className="text-gray-300 hover:text-white transition-colors font-medium"
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/register"
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-              >
-                Get Started
-              </Link>
-            </div>
-          </nav>
-
-          <div className="py-20 sm:py-32 lg:py-40">
-            <div className="text-center">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-8">
-                Welcome to{' '}
-                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Garuda
-                </span>
-              </h1>
-              <p className="text-xl sm:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
-                Your powerful platform for modern web applications. Experience seamless performance, 
-                elegant design, and cutting-edge technology.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link
-                  to="/register"
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-2xl"
-                >
-                  Get Started Free
-                </Link>
-                <Link
-                  to="/login"
-                  className="border-2 border-gray-300 hover:border-white text-gray-300 hover:text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all"
-                >
-                  Sign In
-                </Link>
-              </div>
-            </div>
+        <div className="flex items-center space-x-8">
+          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium">
+            Maps
+          </Link>
+          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium">
+            Landmarks
+          </Link>
+          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium">
+            Activities
+          </Link>
+        </div>
+        <Link
+          to="/login"
+          className="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+        >
+          Log In
+        </Link>
+      </nav>
+        <div className="px-8 py-12 pt-32">
+          <div className="text-center mb-12">
+            <h1 className="text-5xl font-bold text-white mb-4">
+              Discover Indonesia Like Never Before
+            </h1>
+            <p className="text-xl text-gray-200">
+              From iconic landmarks to unforgettable local experiences — all just around the corner.
+            </p>
           </div>
 
-          <div className="py-20">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-4">Lightning Fast</h3>
-                <p className="text-gray-300">
-                  Built with modern technologies for optimal performance and seamless user experience.
-                </p>
-              </div>
-
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-4">Secure & Reliable</h3>
-                <p className="text-gray-300">
-                  Enterprise-grade security with robust authentication and data protection.
-                </p>
-              </div>
-
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-4">User Friendly</h3>
-                <p className="text-gray-300">
-                  Intuitive interface designed with user experience as the top priority.
-                </p>
-              </div>
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="bg-white rounded-lg p-4 shadow-lg">
+            <div className="relative">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0531220356393!2d106.61572797453162!3d-6.256732661256703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fb56b25975f9%3A0x50c7d605ba8542f5!2sMultimedia%20Nusantara%20University!5e0!3m2!1sen!2sid!4v1753399934984!5m2!1sen!2sid"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-lg"
+              ></iframe>
+              <button 
+                onClick={() => console.log('View larger map clicked')}
+                className="absolute top-4 right-4 bg-white hover:bg-blue-600 text-blue-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
+                View larger map
+              </button>
             </div>
           </div>
+        </div>
 
-          <div className="py-20">
-            <div className="text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-                Ready to get started?
-              </h2>
-              <p className="text-xl text-gray-300 mb-8">
-                Join thousands of users who trust Garuda for their applications.
-              </p>
-              <Link
-                to="/register"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-2xl inline-block"
-              >
-                Create Your Account
-              </Link>
-            </div>
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
+              Historical landmark recommended for you
+            </h2>
+            <p className="text-gray-600 font-inter">
+              Vacations to make your experience enjoyable in Indonesia!
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {landmarks.map((landmark) => (
+              <div key={landmark.id} className="bg-[#F0F0F0] rounded-lg overflow-hidden shadow-lg h-80">
+                <div className="p-4">
+                <img
+                  src={landmark.image}
+                  alt={landmark.name}
+                  className="h-40 object-cover rounded-lg mb-3"
+                />
+                  <div className="flex items-center mb-2">
+                    <div className="w-2 h-2 bg-[#2B5C4F] rounded-full mr-2"></div>
+                    <span className="text-xs text-[#2B5C4F] font-inter">{landmark.location || "Indonesia"}</span>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2 font-inter">
+                    {landmark.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3 font-inter">
+                    Lorem Ipsum Sit Dolor.....
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-[#E2C97E] font-inter">
+                      {landmark.price}
+                    </span>
+                    <span className="text-sm text-gray-500 font-inter">
+                      /{landmark.rating}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
+              Activities recommended for you
+            </h2>
+            <p className="text-gray-600 font-inter">
+              Vacations to make your experience enjoyable in Indonesia!
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {activities.map((activity) => (
+              <div key={activity.id} className="bg-[#F0F0F0] rounded-lg overflow-hidden shadow-lg h-80">
+                <div className="p-4">
+                <img
+                  src={activity.image}
+                  alt={activity.name}
+                  className="h-40 object-cover rounded-lg mb-3"
+                />
+                  <div className="flex items-center mb-2">
+                    <div className="w-2 h-2 bg-[#2B5C4F] rounded-full mr-2"></div>
+                    <span className="text-xs text-[#2B5C4F] font-inter">Kota Semarang</span>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2 font-inter">
+                    {activity.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3 font-inter">
+                    {activity.location}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-[#E2C97E] font-inter">
+                      {activity.price}
+                    </span>
+                    <span className="text-sm text-gray-500 font-inter">
+                      /person
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
