@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LandmarkCard from './LandmarkCard';
+import ActivityCard from './ActivityCard';
 
 const LandingPage = () => {
   const landmarks = [
@@ -117,30 +119,7 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {landmarks.map((landmark) => (
               <Link to="/landmarks/details" key={landmark.id} className="cursor-pointer">
-              <div className="bg-[#F0F0F0] rounded-lg overflow-hidden shadow-lg h-80">
-                <div className="p-4">
-                <img
-                  src={landmark.image}
-                  alt={landmark.name}
-                  className="h-40 object-cover rounded-lg mb-3"
-                />
-                  <div className="flex items-center mb-2">
-                    <div className="w-2 h-2 bg-[#2B5C4F] rounded-full mr-2"></div>
-                    <span className="text-xs text-[#2B5C4F] font-inter">{landmark.location || "Indonesia"}</span>
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2 font-inter">
-                    {landmark.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3 font-inter">
-                    Lorem Ipsum Sit Dolor.....
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold text-[#E2C97E] font-inter">
-                      {landmark.price}
-                    </span>
-                  </div>
-                </div>
-              </div>
+                <LandmarkCard landmark={landmark} />
               </Link>
             ))}
           </div>
@@ -158,30 +137,9 @@ const LandingPage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {activities.map((activity) => (
-              <div key={activity.id} className="bg-[#F0F0F0] rounded-lg overflow-hidden shadow-lg h-80">
-                <div className="p-4">
-                <img
-                  src={activity.image}
-                  alt={activity.name}
-                  className="h-40 object-cover rounded-lg mb-3"
-                />
-                  <div className="flex items-center mb-2">
-                    <div className="w-2 h-2 bg-[#2B5C4F] rounded-full mr-2"></div>
-                    <span className="text-xs text-[#2B5C4F] font-inter">Kota Semarang</span>
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2 font-inter">
-                    {activity.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3 font-inter">
-                    {activity.location}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold text-[#E2C97E] font-inter">
-                      {activity.price}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <Link to="/activities/details" key={activity.id} className="cursor-pointer">
+                <ActivityCard activity={activity} />
+              </Link>
             ))}
           </div>
         </div>

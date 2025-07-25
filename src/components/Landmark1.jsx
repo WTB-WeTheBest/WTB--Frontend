@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MagnifyingGlassIcon, AdjustmentsHorizontalIcon, ChevronDownIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, AdjustmentsHorizontalIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import LandmarkCard from './LandmarkCard';
 
 const Landmark1 = () => {
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
@@ -103,58 +104,29 @@ const Landmark1 = () => {
     }
   ];
 
-  const LandmarkCard = ({ landmark }) => (
-    <div className="bg-[#DFDFDF] rounded-lg shadow-lg min-h-[320px] cursor-pointer hover:shadow-xl transition-shadow">
-      <div className="p-4">
-        <div className="relative">
-          <img
-            src={landmark.image}
-            alt={landmark.name}
-            className="w-full h-32 object-cover rounded-lg mb-3"
-          />
-          <button 
-            className="absolute top-2 right-2 p-1.5 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-all duration-200 group"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              // Handle heart click logic here
-            }}
-          >
-            <HeartIcon className="h-4 w-4 text-gray-600 group-hover:text-red-500 group-hover:fill-red-500 transition-colors duration-200" />
-          </button>
-        </div>
-        <div className="flex items-center mb-2">
-          <div className="w-2 h-2 bg-[#2B5C4F] rounded-full mr-2"></div>
-          <span className="text-xs text-[#2B5C4F] font-inter">{landmark.location}</span>
-        </div>
-        <h3 className="font-semibold text-gray-900 mb-2 font-inter">
-          {landmark.name}
-        </h3>
-        <p className="text-sm text-gray-600 mb-3 font-inter">
-          Lorem Ipsum Sit Dolor.....
-        </p>
-        <div className="flex items-center justify-between">
-          <span className="text-lg font-bold text-[#E2C97E] font-inter">
-            {landmark.price}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
 
   return (
-    <div 
-      className="min-h-screen"
-      style={{
+    <div
+    style={{
         background: 'linear-gradient(to bottom, #2B5C4F 0%, #2B5C4F 5%, rgba(43, 92, 79, 0.8) 10%, rgba(43, 92, 79, 0.4) 15%, #EDE4D3 85%)'
       }}
     >
-
-      <div className="px-8 py-12 pt-32">
-        <div className="max-w-4xl mx-auto mb-12">
+      {/* Hero Section with Background Image */}
+      <div>
+        <div className="px-8 py-20 pt-40">
+          {/* Header and Search Section */}
+          <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold text-white mb-4">
+            Landmarks
+          </h1>
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-12">
+            Discover Indonesia's most iconic cultural heritage sites and historical landmarks that tell the story of our rich past
+          </p>
+          
+          <div className="max-w-4xl mx-auto">
           <div className="relative">
             <div className="relative">
-              <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 z-10 pointer-events-none" />
+              <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
               <input
                 type="text"
                 placeholder="Search for remarkable landmarks near you"
@@ -238,8 +210,14 @@ const Landmark1 = () => {
               </div>
             )}
           </div>
+          </div>
         </div>
+      </div>
 
+      {/* Content Section with Gradient Background */}
+      <div 
+        className="px-8 py-12"
+      >
         {/* Historical Landmark Section */}
         <div className="max-w-6xl mx-auto mb-16">
           <div className="mb-8">
@@ -300,8 +278,9 @@ const Landmark1 = () => {
           </div>
         </div>
       </div>
-
     </div>
+    
+  </div>
   );
 };
 

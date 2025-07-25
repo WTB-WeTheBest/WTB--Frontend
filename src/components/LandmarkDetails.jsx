@@ -33,8 +33,8 @@ const LandmarkDetails = () => {
         </div>
       )
     },
-    history: {
-      title: "History of Masjid Agung An-Nur",
+    legend: {
+      title: "Legend of Masjid Agung An-Nur",
       content: (
         <div className="space-y-4 text-gray-700 leading-relaxed">
           <p>
@@ -219,14 +219,14 @@ const LandmarkDetails = () => {
               About
             </button>
             <button 
-              onClick={() => setActiveTab('history')}
+              onClick={() => setActiveTab('legend')}
               className={`px-8 py-3 rounded-lg font-medium transition-colors cursor-pointer ${
-                activeTab === 'history' 
+                activeTab === 'legend' 
                   ? 'bg-yellow-400 text-gray-800' 
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
-              History
+              Legend
             </button>
             <button 
               onClick={() => setActiveTab('contacts')}

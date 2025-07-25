@@ -31,8 +31,8 @@ const ActivityDetails = () => {
         </div>
       )
     },
-    history: {
-      title: "History of Pacu Jalur Festival",
+    legend: {
+      title: "Legend of Pacu Jalur Festival",
       content: (
         <div className="space-y-4 text-gray-700 leading-relaxed">
           <p>
@@ -215,14 +215,14 @@ const ActivityDetails = () => {
               About
             </button>
             <button 
-              onClick={() => setActiveTab('history')}
+              onClick={() => setActiveTab('legend')}
               className={`px-8 py-3 rounded-lg font-medium transition-colors cursor-pointer ${
-                activeTab === 'history' 
+                activeTab === 'legend' 
                   ? 'bg-yellow-400 text-gray-800' 
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
-              History
+              Legend
             </button>
             <button 
               onClick={() => setActiveTab('contacts')}
