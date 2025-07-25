@@ -171,8 +171,8 @@ const LandmarkDetails = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">Masjid Agung An-Nur</h1>
-            <div className="flex items-center text-gray-600">
+            <h1 className="text-4xl font-bold text-gray-200 mb-2">Masjid Agung An-Nur</h1>
+            <div className="flex items-center text-gray-300">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
@@ -210,7 +210,7 @@ const LandmarkDetails = () => {
           <div className="flex justify-center space-x-4 mb-8">
             <button 
               onClick={() => setActiveTab('about')}
-              className={`px-8 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-8 py-3 rounded-lg font-medium transition-colors cursor-pointer ${
                 activeTab === 'about' 
                   ? 'bg-yellow-400 text-gray-800' 
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -220,7 +220,7 @@ const LandmarkDetails = () => {
             </button>
             <button 
               onClick={() => setActiveTab('history')}
-              className={`px-8 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-8 py-3 rounded-lg font-medium transition-colors cursor-pointer ${
                 activeTab === 'history' 
                   ? 'bg-yellow-400 text-gray-800' 
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -230,7 +230,7 @@ const LandmarkDetails = () => {
             </button>
             <button 
               onClick={() => setActiveTab('contacts')}
-              className={`px-8 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-8 py-3 rounded-lg font-medium transition-colors cursor-pointer ${
                 activeTab === 'contacts' 
                   ? 'bg-yellow-400 text-gray-800' 
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'

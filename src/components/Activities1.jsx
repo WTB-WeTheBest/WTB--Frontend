@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MagnifyingGlassIcon, AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, AdjustmentsHorizontalIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const Activities1 = () => {
+  const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedPriceRange, setSelectedPriceRange] = useState('');
+
+  const categories = ['Cultural Events', 'Religious Activities', 'Traditional Arts', 'Educational Tours'];
+  const priceRanges = ['Under Rp 500.000', 'Rp 500.000 - 1.000.000', 'Rp 1.000.000 - 2.000.000', 'Above Rp 2.000.000'];
+
   const nearestActivities = [
     {
       id: 1,
@@ -135,7 +142,7 @@ const Activities1 = () => {
           <h1 className="text-2xl font-bold text-yellow-300 font-inter">BudayaIn!</h1>
         </div>
         <div className="flex items-center space-x-8">
-          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium font-inter">
+          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium font-inter cursor-pointer">
             Maps
           </Link>
           <Link 
@@ -169,10 +176,83 @@ const Activities1 = () => {
                 placeholder="Search for exciting experiences near you"
                 className="w-full pl-12 pr-16 py-4 bg-white/90 backdrop-blur-sm rounded-full text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2B5C4F] font-inter"
               />
-              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#2B5C4F] hover:bg-[#1f4239] text-white p-2 rounded-full transition-colors">
+              <button 
+                onClick={() => setIsFiltersExpanded(!isFiltersExpanded)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#2B5C4F] hover:bg-[#1f4239] text-white p-2 rounded-full transition-colors cursor-pointer"
+              >
                 <AdjustmentsHorizontalIcon className="h-5 w-5" />
               </button>
             </div>
+            
+            {/* Expanded Filters */}
+            {isFiltersExpanded && (
+              <div className="mt-4 bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Category Filter */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2 font-inter">
+                      Category
+                    </label>
+                    <div className="relative">
+                      <select
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                        className="w-full py-3 px-4 bg-white border border-gray-200 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#2B5C4F] focus:border-transparent appearance-none font-inter cursor-pointer"
+                      >
+                        <option value="">Select Category</option>
+                        {categories.map((category) => (
+                          <option key={category} value={category}>
+                            {category}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDownIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+                    </div>
+                  </div>
+
+                  {/* Price Range Filter */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2 font-inter">
+                      Price Range
+                    </label>
+                    <div className="relative">
+                      <select
+                        value={selectedPriceRange}
+                        onChange={(e) => setSelectedPriceRange(e.target.value)}
+                        className="w-full py-3 px-4 bg-white border border-gray-200 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#2B5C4F] focus:border-transparent appearance-none font-inter cursor-pointer"
+                      >
+                        <option value="">Select Price Range</option>
+                        {priceRanges.map((range) => (
+                          <option key={range} value={range}>
+                            {range}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDownIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Apply/Clear Buttons */}
+                <div className="flex justify-end gap-3 mt-6">
+                  <button
+                    onClick={() => {
+                      setSelectedCategory('');
+                      setSelectedPriceRange('');
+                    }}
+                    className="px-6 py-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors font-inter cursor-pointer"
+                  >
+                    Clear
+                  </button>
+                  <button
+                    onClick={() => setIsFiltersExpanded(false)}
+                    className="px-6 py-2 bg-[#2B5C4F] hover:bg-[#1f4239] text-white rounded-lg font-medium transition-colors font-inter cursor-pointer"
+                  >
+                    Apply Filters
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -188,7 +268,9 @@ const Activities1 = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {nearestActivities.map((activity) => (
-              <ActivityCard key={activity.id} activity={activity} />
+              <Link to="/activities/details" key={activity.id} className="cursor-pointer">
+                <ActivityCard activity={activity} />
+              </Link>
             ))}
           </div>
         </div>
@@ -205,7 +287,9 @@ const Activities1 = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {trendingActivities.map((activity) => (
-              <ActivityCard key={activity.id} activity={activity} />
+              <Link to="/activities/details" key={activity.id} className="cursor-pointer">
+                <ActivityCard activity={activity} />
+              </Link>
             ))}
           </div>
         </div>
@@ -222,14 +306,14 @@ const Activities1 = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {recommendedActivities.map((activity) => (
-              <ActivityCard key={activity.id} activity={activity} />
+              <Link to="/activities/details" key={activity.id} className="cursor-pointer">
+                <ActivityCard activity={activity} />
+              </Link>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Footer Section */}
-      <div className="bg-[#2B5C4F] h-64 mt-16"></div>
     </div>
   );
 };

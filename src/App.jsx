@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './services/AuthContext.jsx';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
 import Login from './components/Login';  
 import Register from './components/Register';
@@ -9,10 +10,12 @@ import Dashboard from './components/Dashboard';
 import Landmark1 from './components/Landmark1';
 import Activities1 from './components/Activities1';
 import LandmarkDetails from './components/LandmarkDetails';
+import ActivityDetails from './components/ActivityDetails';
 
 const AppContent = () => {
   const location = useLocation();
   const hideNavbar = ['/login', '/register'].includes(location.pathname);
+  const hideFooter = ['/login', '/register'].includes(location.pathname);
 
   return (
     <div className="min-h-screen">
@@ -53,7 +56,20 @@ const AppContent = () => {
           <LandmarkDetails />
           } 
         />
+        <Route 
+          path="/activities" 
+          element={
+          <Activities1 />
+          } 
+        />
+        <Route 
+          path="/activities/details" 
+          element={
+          <ActivityDetails />
+          } 
+        />
       </Routes>
+      {!hideFooter && <Footer />}
     </div>
   );
 };
@@ -89,7 +105,7 @@ const PublicRoute = ({ children }) => {
     );
   }
   
-  return !isAuthenticated ? children : <Navigate to="/dashboard" />;
+  return !isAuthenticated ? children : <Navigate to="/" />;
 };
 
 const HomeRoute = () => {
@@ -106,7 +122,7 @@ const HomeRoute = () => {
     );
   }
   
-  return isAuthenticated ? <Navigate to="/dashboard" /> : <LandingPage />;
+  return <LandingPage />;
 };
 
 function App() {

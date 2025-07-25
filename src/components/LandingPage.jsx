@@ -77,7 +77,7 @@ const LandingPage = () => {
         </div>
         <div className="flex items-center space-x-8">
           <Link to="#" 
-          className="text-yellow-300 hover:text-yellow-200 font-medium">
+          className="text-yellow-300 hover:text-yellow-200 font-medium cursor-pointer">
             Maps
           </Link>
           <Link 
@@ -87,13 +87,13 @@ const LandingPage = () => {
             Landmarks
           </Link>
           <Link to="#" 
-          className="text-yellow-300 hover:text-yellow-200 font-medium">
+          className="text-yellow-300 hover:text-yellow-200 font-medium cursor-pointer">
             Activities
           </Link>
         </div>
         <Link
           to="/login"
-          className="bg-yellow-400 hover:bg-yellow-500 text-cream px-6 py-2 rounded-lg font-medium transition-colors"
+          className="bg-yellow-400 hover:bg-yellow-500 text-cream px-6 py-2 rounded-lg font-medium transition-colors cursor-pointer"
         >
           Log In
         </Link>
@@ -123,7 +123,7 @@ const LandingPage = () => {
               ></iframe>
               <button 
                 onClick={() => console.log('View larger map clicked')}
-                className="absolute top-4 right-4 bg-white hover:bg-blue-600 text-blue-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                className="absolute top-4 right-4 bg-white hover:bg-blue-600 text-blue-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer"
               >
                 View larger map
               </button>
@@ -143,7 +143,7 @@ const LandingPage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {landmarks.map((landmark) => (
-              <Link to="/landmarks/details" key={landmark.id}>
+              <Link to="/landmarks/details" key={landmark.id} className="cursor-pointer">
               <div className="bg-[#F0F0F0] rounded-lg overflow-hidden shadow-lg h-80">
                 <div className="p-4">
                 <img
