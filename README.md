@@ -2,17 +2,6 @@
 
 **Walk the Culture, One Step at a Time**
 
-## 📖 Table of Contents
-
-  * [About The Project](https://www.google.com/search?q=%23about-the-project)
-  * [Problem Statement](https://www.google.com/search?q=%23problem-statement)
-  * [Our Solution](https://www.google.com/search?q=%23our-solution)
-  * [Features](https://www.google.com/search?q=%23features)
-  * [User Persona](https://www.google.com/search?q=%23user-persona)
-  * [Tech Stack](https://www.google.com/search?q=%23tech-stack)
-  * [Our Team](https://www.google.com/search?q=%23our-team)
-  * [Acknowledgments](https://www.google.com/search?q=%23acknowledgments)
-
 ## 📍 About The Project
 
 **LangkahLokal** is a map-first web platform designed to help people discover Indonesia's rich cultural heritage like never before. From iconic landmarks and historical sites to authentic local activities and timeless folklore, our mission is to reconnect Indonesians and global travelers with the diverse cultures of the archipelago.
