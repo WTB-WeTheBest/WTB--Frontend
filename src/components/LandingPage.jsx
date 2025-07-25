@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LandmarkCard from './LandmarkCard';
 import ActivityCard from './ActivityCard';
 
 const LandingPage = () => {
+  const navigate = useNavigate()
+
   const landmarks = [
     {
       id: 1,
@@ -97,7 +99,7 @@ const LandingPage = () => {
                 className="rounded-lg"
               ></iframe>
               <button 
-                onClick={() => console.log('View larger map clicked')}
+                onClick={() => navigate('/map')}
                 className="absolute top-4 right-4 bg-white hover:bg-blue-600 text-blue-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer"
               >
                 View larger map

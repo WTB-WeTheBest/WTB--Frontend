@@ -46,7 +46,7 @@ const Navbar = () => {
         </h1>
       </div>
       <div className="flex items-center space-x-8">
-        <Link to="/" className="text-yellow-300 hover:text-yellow-200 font-medium cursor-pointer">
+        <Link to="/map" className="text-yellow-300 hover:text-yellow-200 font-medium cursor-pointer">
           Maps
         </Link>
         <Link to="/landmarks" className="text-yellow-300 hover:text-yellow-200 font-medium cursor-pointer">
