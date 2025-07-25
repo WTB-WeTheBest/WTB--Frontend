@@ -50,9 +50,9 @@ jobs:
             cd ~/WTB--Frontend
 
             docker compose down || true
-            docker rmi wtb-frontend.:latest || true
+            docker rmi wtb-frontend:latest || true
             
-            docker load -i wtb-frontend..tar
-            rm wtb-frontend..tar
+            docker load -i wtb-frontend.tar
+            rm wtb-frontend.tar
             
             docker compose up -d
