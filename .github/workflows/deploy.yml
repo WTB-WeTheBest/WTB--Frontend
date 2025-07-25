@@ -1,0 +1,58 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create .env file from secrets
+        run: |
+          cat <<EOF > .env
+          VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}
+          VITE_API_BASE_URL=${{ secrets.VITE_API_IP_LOCATION_URL }}
+          EOF
+
+      - name: Build Docker image
+        run: docker build -t wtb-frontend:latest .
+
+      - name: Save Docker image to file
+        run: docker save wtb-frontend:latest -o wtb-frontend.tar
+
+      - name: Prepare deploy files
+        run: |
+          mkdir WTB--Frontend
+          mv wtb-frontend.tar docker-compose.yml WTB--Frontend/
+
+      - name: Copy Docker image and .env to server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "WTB--Frontend/*"
+          target: "~/"
+
+      - name: Deploy on remote server
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/WTB--Frontend
+
+            docker compose down || true
+            docker rmi wtb-frontend.:latest || true
+            
+            docker load -i wtb-frontend..tar
+            rm wtb-frontend..tar
+            
+            docker compose up -d
