@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../services/AuthContext.jsx';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import logo from '../assets/logo_putih.png';
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -35,7 +36,13 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-[#2B5C4F]">
       <div className="flex items-center">
         <h1 className="text-2xl font-bold text-yellow-300">
-          <Link to="/" className="cursor-pointer">BudayaIn!</Link>
+          <Link to="/" className="cursor-pointer">
+          <img 
+            src={logo} 
+            alt="LangkahLokal" 
+            className="h-12 w-auto"  
+          />
+          </Link>
         </h1>
       </div>
       <div className="flex items-center space-x-8">
