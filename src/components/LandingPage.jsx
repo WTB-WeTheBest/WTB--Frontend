@@ -138,9 +138,6 @@ const LandingPage = () => {
                     <span className="text-lg font-bold text-[#E2C97E] font-inter">
                       {landmark.price}
                     </span>
-                    <span className="text-sm text-gray-500 font-inter">
-                      /{landmark.rating}
-                    </span>
                   </div>
                 </div>
               </div>

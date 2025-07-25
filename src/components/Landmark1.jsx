@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MagnifyingGlassIcon, AdjustmentsHorizontalIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, AdjustmentsHorizontalIcon, ChevronDownIcon, HeartIcon } from '@heroicons/react/24/outline';
 
 const Landmark1 = () => {
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
@@ -106,11 +106,23 @@ const Landmark1 = () => {
   const LandmarkCard = ({ landmark }) => (
     <div className="bg-[#DFDFDF] rounded-lg shadow-lg min-h-[320px] cursor-pointer hover:shadow-xl transition-shadow">
       <div className="p-4">
-        <img
-          src={landmark.image}
-          alt={landmark.name}
-          className="w-full h-32 object-cover rounded-lg mb-3"
-        />
+        <div className="relative">
+          <img
+            src={landmark.image}
+            alt={landmark.name}
+            className="w-full h-32 object-cover rounded-lg mb-3"
+          />
+          <button 
+            className="absolute top-2 right-2 p-1.5 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-all duration-200 group"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              // Handle heart click logic here
+            }}
+          >
+            <HeartIcon className="h-4 w-4 text-gray-600 group-hover:text-red-500 group-hover:fill-red-500 transition-colors duration-200" />
+          </button>
+        </div>
         <div className="flex items-center mb-2">
           <div className="w-2 h-2 bg-[#2B5C4F] rounded-full mr-2"></div>
           <span className="text-xs text-[#2B5C4F] font-inter">{landmark.location}</span>
