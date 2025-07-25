@@ -48,6 +48,9 @@ const Navbar = () => {
         <Link to="/activities" className="text-yellow-300 hover:text-yellow-200 font-medium cursor-pointer">
           Activities
         </Link>
+        <Link to="/folklore" className="text-yellow-300 hover:text-yellow-200 font-medium cursor-pointer">
+          Folklore
+        </Link>
       </div>
       
       {/* Conditional rendering based on authentication status */}

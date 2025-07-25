@@ -11,7 +11,9 @@ import Landmark1 from './components/Landmark1';
 import Activities1 from './components/Activities1';
 import LandmarkDetails from './components/LandmarkDetails';
 import ActivityDetails from './components/ActivityDetails';
-import FullScreenMap from './components/FullScreenMap.jsx';
+import FullScreenMap from './components/FullScreenMap';
+import Folklore from './components/Folklore';
+import FolkloreDetails from './components/FolkloreDetails'; 
 
 const AppContent = () => {
   const location = useLocation();
@@ -73,6 +75,18 @@ const AppContent = () => {
           path="/map" 
           element={
           <FullScreenMap />
+          } 
+        />
+        <Route 
+          path="/folklore" 
+          element={
+          <Folklore />
+          } 
+        />
+        <Route 
+          path="/folklore/details" 
+          element={
+          <FolkloreDetails />
           } 
         />
       </Routes>
