@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MagnifyingGlassIcon, AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline';
 
-const Landmark1 = () => {
-  const historicalLandmarks = [
+const Activities1 = () => {
+  const nearestActivities = [
     {
       id: 1,
       name: "Masjid Agung An-Nur",
@@ -34,7 +34,7 @@ const Landmark1 = () => {
     }
   ];
 
-  const trendingLandmarks = [
+  const trendingActivities = [
     {
       id: 1,
       name: "Pacu Jalur Festival",
@@ -65,7 +65,7 @@ const Landmark1 = () => {
     }
   ];
 
-  const recommendedLandmarks = [
+  const recommendedActivities = [
     {
       id: 1,
       name: "Pacu Jalur Festival",
@@ -96,27 +96,27 @@ const Landmark1 = () => {
     }
   ];
 
-  const LandmarkCard = ({ landmark }) => (
+  const ActivityCard = ({ activity }) => (
     <div className="bg-[#DFDFDF] rounded-lg shadow-lg min-h-[320px]">
       <div className="p-4">
         <img
-          src={landmark.image}
-          alt={landmark.name}
+          src={activity.image}
+          alt={activity.name}
           className="w-full h-32 object-cover rounded-lg mb-3"
         />
         <div className="flex items-center mb-2">
           <div className="w-2 h-2 bg-[#2B5C4F] rounded-full mr-2"></div>
-          <span className="text-xs text-[#2B5C4F] font-inter">{landmark.location}</span>
+          <span className="text-xs text-[#2B5C4F] font-inter">{activity.location}</span>
         </div>
         <h3 className="font-semibold text-gray-900 mb-2 font-inter">
-          {landmark.name}
+          {activity.name}
         </h3>
         <p className="text-sm text-gray-600 mb-3 font-inter">
           Lorem Ipsum Sit Dolor.....
         </p>
         <div className="flex items-center justify-between">
           <span className="text-lg font-bold text-[#E2C97E] font-inter">
-            {landmark.price}
+            {activity.price}
           </span>
         </div>
       </div>
@@ -130,6 +130,34 @@ const Landmark1 = () => {
         background: 'linear-gradient(to bottom, #2B5C4F 0%, #2B5C4F 5%, rgba(43, 92, 79, 0.8) 10%, rgba(43, 92, 79, 0.4) 15%, #EDE4D3 85%)'
       }}
     >
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-[#2B5C4F]">
+        <div className="flex items-center">
+          <h1 className="text-2xl font-bold text-yellow-300 font-inter">BudayaIn!</h1>
+        </div>
+        <div className="flex items-center space-x-8">
+          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium font-inter">
+            Maps
+          </Link>
+          <Link 
+            to="/landmarks" 
+            className="text-yellow-300 hover:text-yellow-200 font-medium font-inter"
+          >
+            Landmarks
+          </Link>
+          <Link 
+            to="/activities" 
+            className="text-yellow-300 hover:text-yellow-200 font-medium font-inter"
+        >
+            Activities
+          </Link>
+        </div>
+        <Link
+          to="/login"
+          className="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-lg font-medium transition-colors font-inter"
+        >
+          Log In
+        </Link>
+      </nav>
 
       <div className="px-8 py-12 pt-32">
         <div className="max-w-4xl mx-auto mb-12">
@@ -138,7 +166,7 @@ const Landmark1 = () => {
               <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search for remarkable landmarks near you"
+                placeholder="Search for exciting experiences near you"
                 className="w-full pl-12 pr-16 py-4 bg-white/90 backdrop-blur-sm rounded-full text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2B5C4F] font-inter"
               />
               <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#2B5C4F] hover:bg-[#1f4239] text-white p-2 rounded-full transition-colors">
@@ -148,11 +176,10 @@ const Landmark1 = () => {
           </div>
         </div>
 
-        {/* Historical Landmark Section */}
         <div className="max-w-6xl mx-auto mb-16">
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
-              Historical landmark near you
+              Nearest Activities around you
             </h2>
             <p className="text-gray-600 font-inter">
               Vacations to make your experience enjoyable in Indonesia!
@@ -160,15 +187,12 @@ const Landmark1 = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {historicalLandmarks.map((landmark) => (
-              <Link to="/landmarks/details" key={landmark.id}>
-                <LandmarkCard landmark={landmark} />
-              </Link>
+            {nearestActivities.map((activity) => (
+              <ActivityCard key={activity.id} activity={activity} />
             ))}
           </div>
         </div>
 
-        {/* Trending Now Section */}
         <div className="max-w-6xl mx-auto mb-16">
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
@@ -180,15 +204,12 @@ const Landmark1 = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trendingLandmarks.map((landmark) => (
-              <Link to="/landmarks/details" key={landmark.id}>
-                <LandmarkCard landmark={landmark} />
-              </Link>
+            {trendingActivities.map((activity) => (
+              <ActivityCard key={activity.id} activity={activity} />
             ))}
           </div>
         </div>
 
-        {/* Recommended by AI Section */}
         <div className="max-w-6xl mx-auto mb-16">
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-2 font-inter">
@@ -200,10 +221,8 @@ const Landmark1 = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {recommendedLandmarks.map((landmark) => (
-              <Link to="/landmarks/details" key={landmark.id}>
-                <LandmarkCard landmark={landmark} />
-              </Link>
+            {recommendedActivities.map((activity) => (
+              <ActivityCard key={activity.id} activity={activity} />
             ))}
           </div>
         </div>
@@ -215,4 +234,4 @@ const Landmark1 = () => {
   );
 };
 
-export default Landmark1;
+export default Activities1;

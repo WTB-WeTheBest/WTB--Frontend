@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Landmark1 from './components/Landmark1';
+import Activities1 from './components/Activities1';
 import LandmarkDetails from './components/LandmarkDetails';
 
 const AppContent = () => {
