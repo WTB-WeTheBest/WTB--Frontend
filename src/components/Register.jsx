@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../services/AuthContext.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
+import logo from '../assets/logo.png';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -194,6 +195,15 @@ const Register = () => {
 
   return (
     <div className="register-container">
+      <Link to="/" className="top-left-logo">
+        <img 
+          src={logo} 
+          alt="LangkahLokal Logo" 
+          className="logo-image"
+        />
+        <span className="logo-text">LangkahLokal</span>
+      </Link>
+      
       <div 
         className="background-slideshow"
         style={{

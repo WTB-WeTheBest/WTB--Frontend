@@ -12,12 +12,14 @@ import Activities1 from './components/Activities1';
 import LandmarkDetails from './components/LandmarkDetails';
 import ActivityDetails from './components/ActivityDetails';
 import Collection from './components/Collection';
-import FullScreenMap from './components/FullScreenMap.jsx';
+import FullScreenMap from './components/FullScreenMap';
+import Folklore from './components/Folklore';
+import FolkloreDetails from './components/FolkloreDetails'; 
 
 const AppContent = () => {
   const location = useLocation();
-  const hideNavbar = ['/login', '/register'].includes(location.pathname);
-  const hideFooter = ['/login', '/register'].includes(location.pathname);
+  const hideNavbar = ['/login', '/register', '/map'].includes(location.pathname);
+  const hideFooter = ['/login', '/register', '/map'].includes(location.pathname);
 
   return (
     <div className="min-h-screen">
@@ -81,6 +83,24 @@ const AppContent = () => {
           element={
           <FullScreenMap />
           } 
+        />
+        <Route
+          path="/folklore"
+          element={
+          <Folklore />
+          } 
+        />
+        <Route 
+          path="/folklore/details" 
+          element={
+          <FolkloreDetails />
+          }
+        />
+        <Route
+          path="/map/:id"
+          element={
+          <FullScreenMap />
+          }
         />
       </Routes>
       {!hideFooter && <Footer />}
