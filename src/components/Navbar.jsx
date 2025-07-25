@@ -56,7 +56,7 @@ const Navbar = () => {
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-lg font-medium transition-colors cursor-pointer flex items-center space-x-2"
+            className="text-white hover:text-yellow-200 px-6 py-2 font-medium transition-colors cursor-pointer flex items-center space-x-2"
           >
             <span>{user?.username || 'Profile'}</span>
             <ChevronDownIcon className="h-4 w-4" />
@@ -88,13 +88,21 @@ const Navbar = () => {
           )}
         </div>
       ) : (
-        /* Guest Login Button */
-        <Link
-          to="/login"
-          className="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-lg font-medium transition-colors cursor-pointer"
-        >
-          Log In
-        </Link>
+        /* Guest Login & Register Buttons */
+        <div className="flex items-center space-x-4">
+          <Link
+            to="/login"
+            className="text-white hover:text-yellow-200 px-6 py-2 font-medium transition-colors cursor-pointer"
+          >
+            Log In
+          </Link>
+          <Link
+            to="/register"
+            className="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-lg font-medium transition-colors cursor-pointer"
+          >
+            Register
+          </Link>
+        </div>
       )}
     </nav>
   );

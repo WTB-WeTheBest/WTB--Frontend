@@ -137,40 +137,12 @@ const Activities1 = () => {
         background: 'linear-gradient(to bottom, #2B5C4F 0%, #2B5C4F 5%, rgba(43, 92, 79, 0.8) 10%, rgba(43, 92, 79, 0.4) 15%, #EDE4D3 85%)'
       }}
     >
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-[#2B5C4F]">
-        <div className="flex items-center">
-          <h1 className="text-2xl font-bold text-yellow-300 font-inter">BudayaIn!</h1>
-        </div>
-        <div className="flex items-center space-x-8">
-          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium font-inter cursor-pointer">
-            Maps
-          </Link>
-          <Link 
-            to="/landmarks" 
-            className="text-yellow-300 hover:text-yellow-200 font-medium font-inter"
-          >
-            Landmarks
-          </Link>
-          <Link 
-            to="/activities" 
-            className="text-yellow-300 hover:text-yellow-200 font-medium font-inter"
-        >
-            Activities
-          </Link>
-        </div>
-        <Link
-          to="/login"
-          className="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-lg font-medium transition-colors font-inter"
-        >
-          Log In
-        </Link>
-      </nav>
 
       <div className="px-8 py-12 pt-32">
         <div className="max-w-4xl mx-auto mb-12">
           <div className="relative">
             <div className="relative">
-              <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 z-10 pointer-events-none" />
               <input
                 type="text"
                 placeholder="Search for exciting experiences near you"
