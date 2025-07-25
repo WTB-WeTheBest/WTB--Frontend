@@ -130,32 +130,6 @@ const Landmark1 = () => {
         background: 'linear-gradient(to bottom, #2B5C4F 0%, #2B5C4F 5%, rgba(43, 92, 79, 0.8) 10%, rgba(43, 92, 79, 0.4) 15%, #EDE4D3 85%)'
       }}
     >
-      {/* Fixed Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-[#2B5C4F]">
-        <div className="flex items-center">
-          <h1 className="text-2xl font-bold text-yellow-300 font-inter">BudayaIn!</h1>
-        </div>
-        <div className="flex items-center space-x-8">
-          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium font-inter">
-            Maps
-          </Link>
-          <Link 
-            to="/landmarks" 
-            className="text-yellow-300 hover:text-yellow-200 font-medium font-inter"
-        >
-            Landmarks
-          </Link>
-          <Link to="#" className="text-yellow-300 hover:text-yellow-200 font-medium font-inter">
-            Activities
-          </Link>
-        </div>
-        <Link
-          to="/login"
-          className="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-lg font-medium transition-colors font-inter"
-        >
-          Log In
-        </Link>
-      </nav>
 
       {/* Main Content */}
       <div className="px-8 py-12 pt-32">
@@ -189,7 +163,9 @@ const Landmark1 = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {historicalLandmarks.map((landmark) => (
-              <LandmarkCard key={landmark.id} landmark={landmark} />
+              <Link to="/landmarks/details" key={landmark.id}>
+                <LandmarkCard landmark={landmark} />
+              </Link>
             ))}
           </div>
         </div>
@@ -207,7 +183,9 @@ const Landmark1 = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {trendingLandmarks.map((landmark) => (
-              <LandmarkCard key={landmark.id} landmark={landmark} />
+              <Link to="/landmarks/details" key={landmark.id}>
+                <LandmarkCard landmark={landmark} />
+              </Link>
             ))}
           </div>
         </div>
@@ -225,7 +203,9 @@ const Landmark1 = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {recommendedLandmarks.map((landmark) => (
-              <LandmarkCard key={landmark.id} landmark={landmark} />
+              <Link to="/landmarks/details" key={landmark.id}>
+                <LandmarkCard landmark={landmark} />
+              </Link>
             ))}
           </div>
         </div>

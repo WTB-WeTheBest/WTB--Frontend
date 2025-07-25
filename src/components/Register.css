@@ -36,7 +36,7 @@
 
 .register-card {
   position: relative;
-  background: #F5F1E8;
+  background: white;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   padding: 40px;
@@ -107,7 +107,7 @@
   border-radius: 8px;
   font-size: 14px;
   color: #2D3748;
-  background: #F5F1E8;
+  background: white;
   transition: all 0.2s ease;
   box-sizing: border-box;
 }

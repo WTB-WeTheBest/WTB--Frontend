@@ -1,11 +1,61 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './services/AuthContext.jsx';
+import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
-import Login from './components/Login';
+import Login from './components/Login';  
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Landmark1 from './components/Landmark1';
+import LandmarkDetails from './components/LandmarkDetails';
+
+const AppContent = () => {
+  const location = useLocation();
+  const hideNavbar = ['/login', '/register'].includes(location.pathname);
+
+  return (
+    <div className="min-h-screen">
+      {!hideNavbar && <Navbar />}
+      <Routes>
+        <Route path="/" element={<HomeRoute />} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+        <Route 
+          path="/dashboard" 
+          element={
+          <Dashboard />
+          } 
+        />
+        <Route 
+          path="/landmarks" 
+          element={
+          <Landmark1 />
+          } 
+        />
+        <Route 
+          path="/landmarks/details" 
+          element={
+          <LandmarkDetails />
+          } 
+        />
+      </Routes>
+    </div>
+  );
+};
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -62,39 +112,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen">
-          <Routes>
-            <Route path="/" element={<HomeRoute />} />
-            <Route
-              path="/login"
-              element={
-                <PublicRoute>
-                  <Login />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <PublicRoute>
-                  <Register />
-                </PublicRoute>
-              }
-            />
-            <Route 
-              path="/dashboard" 
-              element={
-              <Dashboard />
-              } 
-            />
-            <Route 
-              path="/landmarks" 
-              element={
-              <Landmark1 />
-              } 
-            />
-          </Routes>
-        </div>
+        <AppContent />
       </Router>
     </AuthProvider>
   );
