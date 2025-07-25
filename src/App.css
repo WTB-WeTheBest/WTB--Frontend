@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom cream color utilities */
+@layer utilities {
+  .bg-cream {
+    background-color: #F5F1E8;
+  }
+  .text-cream {
+    color: #F5F1E8;
+  }
+}
+
 .app {
   min-height: 100vh;
 }

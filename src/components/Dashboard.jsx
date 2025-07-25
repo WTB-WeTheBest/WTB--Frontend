@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100">
-      <div className="w-full bg-white shadow-sm border-b">
+      <div className="w-full bg-cream shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div>
@@ -34,7 +34,7 @@ const Dashboard = () => {
             </div>
             <button
               onClick={handleLogout}
-              className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+              className="bg-red-600 hover:bg-red-700 text-cream font-semibold py-2 px-6 rounded-lg transition-colors focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
             >
               Logout
             </button>
@@ -44,7 +44,7 @@ const Dashboard = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div className="bg-cream rounded-xl shadow-lg p-6 border border-gray-100">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -60,7 +60,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div className="bg-cream rounded-xl shadow-lg p-6 border border-gray-100">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -76,7 +76,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div className="bg-cream rounded-xl shadow-lg p-6 border border-gray-100">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -94,7 +94,7 @@ const Dashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div className="bg-cream rounded-xl shadow-lg p-6 border border-gray-100">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold text-gray-900">Profile Information</h2>
               <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
@@ -123,7 +123,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div className="bg-cream rounded-xl shadow-lg p-6 border border-gray-100">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold text-gray-900">Quick Actions</h2>
               <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
