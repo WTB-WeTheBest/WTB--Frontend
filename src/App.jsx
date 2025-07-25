@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Landmark1 from './components/Landmark1';
+import Activities1 from './components/Activities1';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -91,6 +92,12 @@ function App() {
               path="/landmarks" 
               element={
               <Landmark1 />
+              } 
+            />
+            <Route 
+              path="/activities" 
+              element={
+              <Activities1 />
               } 
             />
           </Routes>
