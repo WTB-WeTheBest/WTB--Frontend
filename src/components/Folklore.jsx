@@ -88,22 +88,25 @@ const Folklore = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {folkloreStories.map((story) => (
-              <Link to="/folklore/details" key={story.id}>
-                <FolkloreCard folklore={story} />
-              </Link>
-            ))}
-          </div>
+          {folkloreStories.map((story) => (
+            <Link to="/folklore/details" key={story.id}>
+              <FolkloreCard folklore={story} />
+            </Link>
+          ))}
         </div>
-      <div className="text-2xl font-bold text-gray-800 mb-2 px-auto font-inter">More Coming Soon!</div>
-        
       </div>
-
-      {/* Footer Section */}
-      <div className="bg-[#2B5C4F] h-64 mt-16"></div>
+      {/* Add text-center class to this div */}
+      <div className="text-center text-2xl font-bold text-gray-800 mb-2 font-inter">
+        More Coming Soon!
+      </div>
+      
     </div>
+
+    {/* Footer Section */}
+    <div className="bg-[#2B5C4F] h-64 mt-16"></div>
   </div>
-  );
+</div>
+);
 };
 
 export default Folklore;
